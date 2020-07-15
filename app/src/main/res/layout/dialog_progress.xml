@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:background="@drawable/re_solid_r12_white"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_height="wrap_content">
+
+    <com.zk.mvp.utils.ui.CircleProgressView
+        android:layout_width="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/view_dialog_progress"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/re_hollow_r12_red"
+        android:text="下载中..."
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="#FF0000"
+        android:typeface="serif"
+        android:layout_below="@+id/view_dialog_progress"
+        android:id="@+id/tv_dialog_progress"/>
+
+
+</RelativeLayout>

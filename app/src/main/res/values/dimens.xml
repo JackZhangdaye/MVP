@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--默认分割线大小-->
+    <dimen name="line_size">1px</dimen>
+
+    <!--装填圆角大小-->
+    <dimen name="corners_size_r2">2dp</dimen>
+    <dimen name="corners_size_r8">8dp</dimen>
+    <dimen name="corners_size_r20">20dp</dimen>
+
+</resources>

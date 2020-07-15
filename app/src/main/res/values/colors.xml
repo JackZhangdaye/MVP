@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--所有虚线颜色-->
+    <color name="all_line_bg">#EEEEEE</color>
+
+    <!--不能点击的按钮背景-->
+    <color name="cannot_click_but">#D2D2D2</color>
+    <!--可以点击的按钮背景-->
+    <color name="click_but">#F53938</color>
+</resources>

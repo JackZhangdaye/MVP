@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!-- 禁用状态 -->
+<item android:state_enabled="false">
+    <shape android:shape="rectangle">
+        <corners android:radius="@dimen/corners_size_r2" />
+        <solid android:color="@color/cannot_click_but" />
+    </shape>
+</item>
+
+<!-- 按压状态 -->
+<item android:state_pressed="true">
+    <shape android:shape="rectangle">
+        <corners android:radius="@dimen/corners_size_r2" />
+        <solid android:color="@color/click_but" />
+    </shape>
+</item>
+
+<!-- 焦点状态 -->
+<item android:state_focused="true">
+    <shape android:shape="rectangle">
+        <corners android:radius="@dimen/corners_size_r2" />
+        <solid android:color="@color/click_but" />
+    </shape>
+</item>
+
+<!-- 默认状态 -->
+<item>
+    <shape android:shape="rectangle">
+        <corners android:radius="@dimen/corners_size_r2" />
+        <solid android:color="@color/click_but" />
+    </shape>
+</item>
+
+</selector>
