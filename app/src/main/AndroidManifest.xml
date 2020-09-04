@@ -37,7 +37,7 @@
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true"
         tools:targetApi="n">
-        <activity android:name=".mvp.view.activity.MainActivity">
+        <activity android:name=".mvp.view.activity.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

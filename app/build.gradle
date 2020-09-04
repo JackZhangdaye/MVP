@@ -37,7 +37,11 @@ android {
     android.applicationVariants.all {
         variant ->
             variant.outputs.all {
-                outputFileName = "MVP_${variant.versionName}.apk"
+                outputFileName = rootProject.getName() + '_v' + variant.versionName + '_' + variant.buildType.name
+                if (variant.buildType.name == buildTypes.release.getName()) {
+                    outputFileName += '_' + new Date().format("yyyyMMdd")
+                }
+                outputFileName += "MVP_${variant.versionName}.apk"
             }
     }
 
@@ -51,7 +55,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

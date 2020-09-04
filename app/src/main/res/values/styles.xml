@@ -27,4 +27,11 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <declare-styleable name="CalendarView">
+        <attr name="textViewSize" format="dimension" />
+        <attr name="textViewColor" format="color" />
+        <attr name="selectedTextColor" format="color" />
+        <attr name="selectedLineColor" format="color" />
+    </declare-styleable>
+
 </resources>
