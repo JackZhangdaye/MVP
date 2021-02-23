@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity implements DownloadApkListener {
         });
 
         Log.i(TAG, "initDatas: "+getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
-//        upAppDialog.show(getSupportFragmentManager(),"");
+        upAppDialog.show(getSupportFragmentManager(),"");
     }
 
     @Override

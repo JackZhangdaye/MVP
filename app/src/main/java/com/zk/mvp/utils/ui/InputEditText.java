@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
+import com.zk.mvp.utils.Utils;
+
 /**
  * 密码类输入专用    不能换行  不能空格
  */
@@ -26,7 +28,7 @@ public class InputEditText extends AppCompatEditText implements TextWatcher {
 
     public InputEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
+        Utils.setEditTextInhibitInputSpeChat(this);
     }
 
     //输入之前

@@ -78,6 +78,25 @@ public class Utils {
     private static final String TAG = "Utils";
 
     /**
+     * 禁止EditText输入特殊字符
+     * @param editText
+     */
+    public static void setEditTextInhibitInputSpeChat(EditText editText){
+
+        InputFilter filter=new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                String speChat="[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+                Pattern pattern = Pattern.compile(speChat);
+                Matcher matcher = pattern.matcher(source.toString());
+                if(matcher.find())return "";
+                else return null;
+            }
+        };
+        editText.setFilters(new InputFilter[]{filter});
+    }
+
+    /**
      * 获取应用程序名称
      */
     public static synchronized String getAppName(Context context) {

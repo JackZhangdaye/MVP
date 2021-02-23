@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ScreenUtils;
@@ -55,11 +56,7 @@ public abstract class BaseActivity<V, P extends BaseContract.BasePresenter<V>>  
         initWindow();
         //设置屏幕为竖屏
         ScreenUtils.setPortrait(this);
-        if (ScreenUtils.isPortrait()){
-            ScreenUtils.adaptScreen4VerticalSlide(this,375);
-        }else {
-            ScreenUtils.adaptScreen4HorizontalSlide(this,667);
-        }
+        AdaptScreenUtils.adaptWidth(getResources(), 375);
         //布局文件
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);

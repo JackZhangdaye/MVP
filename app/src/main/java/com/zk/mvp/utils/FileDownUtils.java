@@ -1,17 +1,22 @@
 package com.zk.mvp.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.core.content.FileProvider;
 
 import com.blankj.utilcode.util.AppUtils;
+import com.zk.mvp.base.BaseActivity;
 import com.zk.mvp.base.DownloadApkListener;
 import com.zk.mvp.http.HttpService;
+import com.zk.mvp.mvp.view.activity.MainActivity;
+import com.zk.mvp.mvp.view.dialog.DefaultDialog;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -151,23 +156,43 @@ public class FileDownUtils {
     }
 
     // 下载成功，开始安装,兼容8.0安装位置来源的权限
-    public void installApkO(Context context, String downloadApkPath) {
+    public void installApkO(BaseActivity activity, String downloadApkPath) {
+        Log.i(TAG, "installApkO: ");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //是否有安装位置来源的权限
-            boolean haveInstallPermission = context.getPackageManager().canRequestPackageInstalls();
+            boolean haveInstallPermission = activity.getPackageManager().canRequestPackageInstalls();
             if (haveInstallPermission) {
                 Log.i(TAG,"8.0手机已经拥有安装未知来源应用的权限，直接安装！");
-                installApk(context, downloadApkPath);
+                installApk(activity,downloadApkPath);
             } else {
                 Log.i(TAG, "installApkO: 无权限");
+                new DefaultDialog.Builder().tipsContent("更新APP需要开启安装权限，请手动打开！").title("权限申请").onSureClickListener(new DefaultDialog.OnSureClickListener() {
+                    @Override
+                    public void sure() {
+                        toInstallPermissionSettingIntent(activity);
+                    }
+
+                    @Override
+                    public void cancel() {
+
+                    }
+                }).build().show(activity.getSupportFragmentManager(),"");
             }
         } else {
-            installApk(context, downloadApkPath);
+            installApk(activity,downloadApkPath);
         }
     }
 
+    //开启安装未知来源权限
+    private void toInstallPermissionSettingIntent(BaseActivity context) {
+        Uri packageURI = Uri.parse("package:"+context.getPackageName());
+        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,packageURI);
+        //系统将打开是未知来源应用的管理列表，需要用户手动设置未知来源应用安装权限
+        context.startActivityForResult(intent, 11);
+    }
+
     //安装
-    private   void installApk(Context context,String downloadApk) {
+    private void installApk(Context context,String downloadApk) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         File file = new File(downloadApk);
         Log.i(TAG, "installApk: "+downloadApk);
