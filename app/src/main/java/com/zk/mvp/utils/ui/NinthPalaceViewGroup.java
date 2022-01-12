@@ -2,20 +2,15 @@ package com.zk.mvp.utils.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.blankj.utilcode.util.SizeUtils;
 import com.bumptech.glide.Glide;
 import com.zk.mvp.R;
+import com.zk.mvp.utils.MeUtils.SizeUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,7 +35,7 @@ public class NinthPalaceViewGroup extends ViewGroup {
     public NinthPalaceViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.NinthPalaceViewGroup);
-        itemGap = typedArray.getDimensionPixelOffset(R.styleable.NinthPalaceViewGroup_itemgap,SizeUtils.dp2px(6));
+        itemGap = typedArray.getDimensionPixelOffset(R.styleable.NinthPalaceViewGroup_itemgap,SizeUtils.getInstance().dp2px(6));
         typedArray.recycle();
         this.context = context;
     }
@@ -56,7 +51,7 @@ public class NinthPalaceViewGroup extends ViewGroup {
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             Glide.with(context).load(data.get(0)).into(view);
             //计算原始图片的大小，如果宽大于父亲的宽就把它等比缩小到父亲的宽那么大，同理
-            LayoutParams lp = new LayoutParams( SizeUtils.dp2px(220),  SizeUtils.dp2px(220));
+            LayoutParams lp = new LayoutParams(SizeUtils.getInstance().dp2px(220),  SizeUtils.getInstance().dp2px(220));
             addView(view, lp);
         } else {
             for (int i = 0; i < data.size(); i++) {
@@ -137,7 +132,7 @@ public class NinthPalaceViewGroup extends ViewGroup {
         //1、只有一个孩子
         if (getChildCount() == 1) {
             Log.i(TAG, "onLayout: " + getChildAt(0).getHeight());
-            getChildAt(0).layout(0, 0, SizeUtils.dp2px(220),  SizeUtils.dp2px(220));
+            getChildAt(0).layout(0, 0, SizeUtils.getInstance().dp2px(220),  SizeUtils.getInstance().dp2px(220));
 
         } else if (getChildCount() == 4) {//2、4个孩子
             getChildAt(0).layout(0, 0, itemWidth, itemWidth);

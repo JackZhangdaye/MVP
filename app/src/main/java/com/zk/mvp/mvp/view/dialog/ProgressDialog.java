@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -12,23 +11,36 @@ import com.zk.mvp.R;
 import com.zk.mvp.base.BaseDialogX;
 import com.zk.mvp.utils.ui.CircleProgressView;
 
-import butterknife.BindView;
-
 public class ProgressDialog extends BaseDialogX {
-    @BindView(R.id.view_dialog_progress)
-    CircleProgressView viewDialogProgress;
-    @BindView(R.id.tv_dialog_progress)
-    TextView tvDialogProgress;
+    private CircleProgressView viewDialogProgress;
+    private TextView tvDialogProgress;
 
     public void setProgress(int progress,Long max,Long min){
-        if (viewDialogProgress.getMax() == 1L) {
-            viewDialogProgress.setMax(max);
+        if (viewDialogProgress != null) {
+            if (viewDialogProgress.getMax() == 1L) {
+                viewDialogProgress.setMax(max);
+            }
+            viewDialogProgress.setProgressAndText(min,progress+"%");
         }
-        viewDialogProgress.setProgressAndText(min,progress+"%");
     }
 
-    public void onDownFinish(){
-        tvDialogProgress.setText("安装");
+    public void setTipsText(int textID){
+        if (tvDialogProgress != null)
+            tvDialogProgress.setText(textID);
+    }
+
+    public void openClick(){
+        if (tvDialogProgress != null)
+            tvDialogProgress.setOnClickListener(v -> {
+                if (onOpenAPKListener != null) {
+                    onOpenAPKListener.open();
+                }
+            });
+    }
+
+    public void closeClick(){
+        if (tvDialogProgress != null)
+            tvDialogProgress.setOnClickListener(null);
     }
 
     @Override
@@ -43,13 +55,8 @@ public class ProgressDialog extends BaseDialogX {
 
     @Override
     protected void initView(View view) {
-        tvDialogProgress.setOnClickListener(v -> {
-            if (tvDialogProgress.getText().toString().equals("安装")) {
-                if (onOpenAPKListener != null) {
-                    onOpenAPKListener.open();
-                }
-            }
-        });
+        tvDialogProgress = view.findViewById(R.id.tv_dialog_progress);
+        viewDialogProgress = view.findViewById(R.id.view_dialog_progress);
     }
 
     @Override
@@ -62,15 +69,6 @@ public class ProgressDialog extends BaseDialogX {
         if (getDialog() == null) {
             return;
         }
-//        Window window = getDialog().getWindow();
-//        if (window != null)
-//            window.setGravity(Gravity.CENTER);
-//        WindowManager.LayoutParams lp = window.getAttributes();
-//        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-//        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-//        lp.dimAmount = 0.5f;
-//        window.setAttributes(lp);
-
         WindowManager.LayoutParams layoutParams = getDialog().getWindow().getAttributes();
         layoutParams.dimAmount = 0.5f;
         layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;

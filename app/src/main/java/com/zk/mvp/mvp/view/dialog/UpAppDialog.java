@@ -1,38 +1,21 @@
 package com.zk.mvp.mvp.view.dialog;
 
 import android.app.Dialog;
-import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 
 import com.zk.mvp.R;
 import com.zk.mvp.base.BaseDialogX;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-
-
 public class UpAppDialog extends BaseDialogX {
-    @BindView(R.id.iv_file_cancel)
-    ImageView ivCancel;
-    @BindView(R.id.tv_dialog_down)
-    TextView tvDown;
-    @BindView(R.id.tv_up_content_dialog)
-    TextView tvUpContent;
-
-    private String upContent;
+    private TextView tvUpContent;
 
     public void setUpContent(String upContent) {
-        this.upContent = upContent;
+        if (tvUpContent != null)
+            tvUpContent.setText(upContent);
     }
 
     @Override
@@ -47,7 +30,15 @@ public class UpAppDialog extends BaseDialogX {
 
     @Override
     protected void initView(View view) {
-        tvUpContent.setText(upContent);
+        tvUpContent = view.findViewById(R.id.tvUpContent);
+
+        view.findViewById(R.id.iv_file_cancel).setOnClickListener(v -> dismiss());
+        view.findViewById(R.id.tvUpDown).setOnClickListener(v -> {
+            if (listener != null) {
+                dismiss();
+                listener.down();
+            }
+        });
     }
 
     @Override
@@ -63,21 +54,6 @@ public class UpAppDialog extends BaseDialogX {
         layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
         layoutParams.gravity = Gravity.CENTER;
         getDialog().getWindow().setAttributes(layoutParams);
-    }
-
-    @OnClick({R.id.iv_file_cancel, R.id.tv_dialog_down})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_file_cancel:
-                dismiss();
-                break;
-            case R.id.tv_dialog_down:
-                if (listener != null) {
-                    dismiss();
-                    listener.down();
-                }
-                break;
-        }
     }
 
     public interface OnDownListener {

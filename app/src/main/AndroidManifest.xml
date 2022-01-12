@@ -28,6 +28,7 @@
 
     <application
         android:allowBackup="true"
+        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -44,20 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".mvp.view.activity.MainActivity"/>-->
-        <activity android:name=".mvp.view.activity.login.GuideActivity" />
-
-
-        <!--阿里热更新-->
-        <meta-data
-            android:name="com.taobao.android.hotfix.IDSECRET"
-            android:value="29322267" />
-        <meta-data
-            android:name="com.taobao.android.hotfix.APPSECRET"
-            android:value="844ef48336fe544fca06ab05bfa086b7" />
-        <meta-data
-            android:name="com.taobao.android.hotfix.RSASECRET"
-            android:value="MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCXFznZzAiOGlqA4EvP3Xdda9jVY0zDKuaZGumtGignTm98hN8jWZJRyd2x7ikslPgxV01Twy0w5ViUnqdddQnAgroGjU8nRLFPLqhGjTDdfVxr3nZ8zRC0KBm2VZEFdLWmOnZlFvsxm+VIUbU7cPfH65OHFbDUOED3v7gqXL6NccT3v0i4jZh7TQKnICtq1SuU405JbYOXMPLH1I4VLmlolyD6bypDnTxuQtFNT+rg8US1+bhvuDHiFcOEVifnltfQkLGptrvoVVZN/irdpmhaqQsKo1ZbFFWvIZN+mFqxYLrBQ/E/ImXAdT/K7aGpTV3hiAWP3TZ1U725CbVZAfwfAgMBAAECggEBAIg5r7Y4aQo+ppUGJjR/eIzpnPIgeuiI+KrYghHJwKRX6tr5LfrAWtWVTWaM1eDVW8WY8iZwloE8d5ZgSYRQ7v78nt8jb1d3bup2pdAeow1AZyD2zhwOBF56vVwRYBTsOo9qrK7OfqMm7R48VUwHudAuDbDBFNLy+VinKlQ/lKsPon1hCwXVQ9hhQH3Sf6TrKxxmvqYPuUTNe6eY8yeAsIgwJ+r8q6Pg1owm6MWcfAFdMMIOu/7P0cZgnJwpey6fy4c83Td1Ai7gZpTL3hx98UPlvgwuu7Z+TzoWn2BztD2EWvWe56mB03+uztFoLq00E3saCYgDTE9AKcTxDWqq60kCgYEA0OyYf7IxocGtlvsXC382CSD7m7bJe/ltgg5bbVMAx+pwI30IbC/wS/gIcdOu00kk3Eplm+QrduOR9gNA7w/HmtUC+cBjzfcLNmBnXAy2X3QRotL1T+GbCngXrnwXf28V/w/vBXR7p3UyibxqnwPeyD3S5G05Kge2OSCGU2WAfEUCgYEAuSKdHZuVtl0g/vmT7PXY1YBuSOn2xPfK82h5tadzubCl+Uloz4jEO6fkqhqFsyMcn2TB1ONuDd5lkRAwBWUNP3TRLU5t5oe8UCSeLp42jhkkdFpe4opK0iOBGY/iPhk0aif42L6Py1mLGHRNeDbUefVtofTCzIJbZWOAjU6lZxMCgYEAyMhIOph++EyQzkOavxLPVHCdPeWptvpcEpxHo0YcvwQAJyr3WDmt/uRtAS+FmUp3ITpicjISz1wfH0W7NsR8eMFz7Z/Git97qBN34c/ZyNxcQpXo6Y8QmDwXzjk1v+N7STf/5scuOx33psUr1ow6o0g/EAYj5M+qgTZPwYAPvd0CgYBoFgvbj5O2edmJQOxn9zi3oINgvxmcV+xkuUJkXQb1SVmnNByXQb+CArzO3iZ5Nq5q9wz7EfrYFUdpLX6yKcQu/xBztnqXd4zqSgwdDZqCfaQ/PmfGWhYC2y9EHd8HJsiPPnXr9geGPouzbf/4LGt9Pf0rZx72N/wGntCxoZvgvQKBgQClPb97bN4jRHrnpFjqNPgxkypCdxxl2Mmog33XSHRSTTIJyLOKn8z+hxQStG1BCNU6YbUrrVfILu1t7GeYNuMfN8AfAPDv5Wbn+DEDREdlhsA5XLjIAUJMT5CNNXgIf+ZHJkDZRt6hsruwOUm8npct/NPghR6t7emEYrNHRLzZVw==" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

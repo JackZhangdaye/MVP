@@ -57,7 +57,7 @@ public class HttpManager {
                             .baseUrl(HttpService.BASE_URL)
                             .client(client)
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())//ScalarsConverterFactory
                             .build();
                 }
             }

@@ -1,10 +1,7 @@
 package com.zk.mvp.http;
 
-import com.zk.mvp.base.Base;
 import com.zk.mvp.mvp.model.LoginModel;
 
-import okhttp3.FormBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -25,6 +22,5 @@ public interface HttpService {
     @Streaming
     @GET
     Call<ResponseBody> down(@Url String url);
-
 
 }

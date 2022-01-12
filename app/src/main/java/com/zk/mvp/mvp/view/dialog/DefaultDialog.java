@@ -8,8 +8,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import androidx.annotation.StringRes;
-
 import com.zk.mvp.R;
 import com.zk.mvp.base.BaseDialogX;
 
@@ -58,6 +56,10 @@ public class DefaultDialog extends BaseDialogX {
         tvContent.setText(tipsContent);
         tvCancel.setText(cancelText);
         tvSure.setText(nextText);
+
+        if (TextUtils.isEmpty(cancelText)) {
+            tvCancel.setVisibility(View.GONE);
+        }
 
         if (TextUtils.isEmpty(title)) {
             tvTitle.setVisibility(View.GONE);
@@ -114,7 +116,7 @@ public class DefaultDialog extends BaseDialogX {
         //可更改文本内容   不设置就使用默认文本
         private String tipsContent;
         private String cancelText;
-        private String nextText = "确定";
+        private String nextText;
         private String title;
         private boolean isHindCancelBottom;
         //回调

@@ -6,14 +6,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.blankj.utilcode.util.SizeUtils;
-
 public class CircleProgressView extends View {
     private Long progress = 0L;
-    private String text = "0%";
+    private String text;
     private Long max = 1L;
 
     public CircleProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -56,14 +55,15 @@ public class CircleProgressView extends View {
         paint.setColor(0xFFEDBC40);//明黄
         canvas.drawCircle((float) (radius + 2*minRadius + radius * Math.sin(360 * progress / max * Math.PI / 180)), (float) (radius + 2*minRadius - radius * Math.cos(360 * progress / max * Math.PI / 180)), stroke, paint);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setTextSize(SizeUtils.sp2px(16));
+        paint.setTextSize(22);
         paint.setStrokeWidth(1.0f);
-        Rect bounds = new Rect();
-        paint.getTextBounds(text, 0, text.length(), bounds);
-        paint.setColor(Color.GRAY);
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawText(text, width / 2 - bounds.width() / 2,
-                width / 2 + bounds.height() / 2, paint);
+        if (!TextUtils.isEmpty(text)) {
+            Rect bounds = new Rect();
+            paint.getTextBounds(text, 0, text.length(), bounds);
+            paint.setColor(Color.GRAY);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawText(text, width / 2 - bounds.width() / 2, width / 2 + bounds.height() / 2, paint);
+        }
     }
 
     /**

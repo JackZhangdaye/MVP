@@ -12,7 +12,6 @@ import com.zk.mvp.R;
 import com.zk.mvp.base.BaseDialogX;
 
 /**
- * 适用于多语言
  * 共用dialog    背景白   圆角8dp
  * 距离左右44dp
  */
@@ -24,7 +23,6 @@ public class DefaultIntDialog extends BaseDialogX {
     private int cancelText;
     private int nextText;
     private int title;
-    private boolean isHindCancelBottom;
 
     public DefaultIntDialog(Builder builder){
         this.title = builder.title;
@@ -32,7 +30,6 @@ public class DefaultIntDialog extends BaseDialogX {
         this.nextText = builder.nextText;
         this.cancelText = builder.cancelText;
         this.listener = builder.onSureClickListener;
-        this.isHindCancelBottom = builder.isHindCancelBottom;
     }
 
     @Override
@@ -52,17 +49,21 @@ public class DefaultIntDialog extends BaseDialogX {
         tvSure = view.findViewById(R.id.tv_default_sure);
         tvTitle = view.findViewById(R.id.tv_default_title);
 
-        tvTitle.setText(title);
         tvContent.setText(tipsContent);
-        tvCancel.setText(cancelText);
         tvSure.setText(nextText);
+
+        if (cancelText == 0) {
+            tvCancel.setText(cancelText);
+        }else {
+            tvCancel.setText(cancelText);
+        }
 
         if (title == 0) {
             tvTitle.setVisibility(View.GONE);
+        } else {
+            tvTitle.setText(title);
         }
-        if (isHindCancelBottom) {
-            tvCancel.setVisibility(View.GONE);
-        }
+
         tvCancel.setOnClickListener(v -> {
             if (listener != null) {
                 listener.cancel();
@@ -114,7 +115,6 @@ public class DefaultIntDialog extends BaseDialogX {
         private int cancelText;
         private int nextText;
         private int title;
-        private boolean isHindCancelBottom;
         //回调
         private OnSureClickListener onSureClickListener;
 
@@ -140,11 +140,6 @@ public class DefaultIntDialog extends BaseDialogX {
 
         public Builder tipsContent(int tipsContent) {
             this.tipsContent = tipsContent;
-            return this;
-        }
-
-        public Builder isHindCancelBottom(boolean isHindCancelBottom) {
-            this.isHindCancelBottom = isHindCancelBottom;
             return this;
         }
 

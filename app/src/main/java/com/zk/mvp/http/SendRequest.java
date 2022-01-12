@@ -29,10 +29,6 @@ public class SendRequest {
     private static final String TAG = "SendRequest";
 
     public static void PostRequest(String url, String [] names , String [] data, BaseCallBack callBack){
-//        RequestBody imageBody = new MultipartBody.Builder()
-//                .setType(MultipartBody.FORM)
-//                .addFormDataPart("avatar", fileImg.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), fileImg))
-//                .build();
         OkHttpClient client = new OkHttpClient();
         //表单添加数据
         FormBody.Builder formBody = new FormBody.Builder();
@@ -73,7 +69,6 @@ public class SendRequest {
                 .Builder()
                 .url(url)
                 .build();
-
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -49,6 +51,12 @@ public abstract class BaseFragment<V, P extends BaseContract.BasePresenter<V>> e
         unbinder = ButterKnife.bind(this, view);
         mPresenter = initPresenter();
         initDatas();
+
+        localDeviceLauncher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+                    boolean grant = true;
+                    for (int i = 0; i < result.size(); i++) { if (!result.get(permissionsGroup[i]))grant = false; }
+                    permissionsCallBack(grant,type);
+                });
     }
 
     private long mExitTime;
@@ -92,5 +100,23 @@ public abstract class BaseFragment<V, P extends BaseContract.BasePresenter<V>> e
 
     private FragmentActivity getSupportActivity() {
         return super.getActivity();
+    }
+
+
+    //      ,Manifest.permission.WRITE_EXTERNAL_STORAGE//允许程序写入外部存储,如SD卡上写文件
+//            ,Manifest.permission.READ_EXTERNAL_STORAGE
+    //申请权限
+    private ActivityResultLauncher<String[]> localDeviceLauncher;
+    private String[] permissionsGroup;
+    private int type;
+    protected void applyPermissions(String[] permissionsGroup,int type){
+        this.permissionsGroup = permissionsGroup;
+        this.type = type;
+        localDeviceLauncher.launch(permissionsGroup);
+    }
+
+    //获取权限回调
+    protected void permissionsCallBack(boolean isAll,int type) {
+
     }
 }
